@@ -3,6 +3,7 @@ let randomNumber = Math.floor(Math.random() * 100) + 1;
 const guesses = document.querySelector('.guesses');
 const lastResult = document.querySelector('.lastResult');
 const lowOrHi = document.querySelector('.lowOrHi');
+const wellDone = document.querySelector('.wellDone');
 
 const guessSubmit = document.querySelector('.guessSubmit');
 const guessField = document.querySelector('.guessField');
@@ -19,13 +20,16 @@ function checkGuess() {
     guesses.textContent += userGuess + ' ';
 
     if (userGuess === randomNumber) {
-        lastResult.textContent = 'Congratulations! You got it right!';
+        lastResult.textContent = '!!!Congratulations!!! You got it right in ' + guessCount + ' guesses';
         lastResult.style.backgroundColor = 'green';
         lowOrHi.textContent = '';
         guesses.textContent = 'Correct guess was: ' + userGuess;
+        if (guessCount < 6) {
+            wellDone.textContent = 'You are good at this game, most people need at least 7 guesses to correctly guess the number'
+        }
         setGameOver();
     } else if (guessCount === 10) {
-        lastResult.textContent = '!!!GAME OVER!!!';
+        lastResult.textContent = '!!!GAME OVER!!! You have used all 10 guesses !!!GAME OVER!!!';
         lowOrHi.textContent = '';
         guesses.textContent = 'Correct guess was: ' + userGuess;
         setGameOver();
